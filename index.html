@@ -130,28 +130,28 @@
       .li_left p {
         padding-left: 0.75rem;
       }
-      .reaction {
+      .cat1 {
         background-color: hsla(0, 100%, 67%, 0.1);
       }
-      .reaction p {
+      .cat1 p {
         color: var(--Lightred);
       }
-      .memory {
+      .cat2 {
         background-color: hsl(39, 100%, 56%, 0.1);
       }
-      .memory p {
+      .cat2 p {
         color: var(--OrangeyYellow);
       }
-      .verbal {
+      .cat3 {
         background-color: hsl(166, 100%, 37%, 0.1);
       }
-      .verbal p {
+      .cat3 p {
         color: var(--GreenTeal);
       }
-      .visual {
+      .cat4 {
         background-color: hsl(234, 85%, 45%, 0.1);
       }
-      .visual p {
+      .cat4 p {
         color: var(--CobaltBlue);
       }
       .result {
@@ -246,7 +246,7 @@
         <section class="summary_card cards">
           <h1 class="header1">Summary</h1>
           <ul>
-            <li class="reaction">
+            <li class="cat1">
               <section class="li_left">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -263,11 +263,13 @@
                     d="M10.833 8.333V2.5l-6.666 9.167h5V17.5l6.666-9.167h-5Z"
                   />
                 </svg>
-                <p>Reaction</p>
+                <p class="category_name"></p>
               </section>
-              <section class="result"><b>80 </b> / 100</section>
+              <section class="result">
+                <b class=".score_result">80 </b> / 100
+              </section>
             </li>
-            <li class="memory">
+            <li class="cat2">
               <section class="li_left">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -298,11 +300,13 @@
                     d="M16.447 13.004a3.334 3.334 0 0 0 .728-5.53m-.025-.067a2.083 2.083 0 0 0-2.983-2.824M10 3.75a2.085 2.085 0 0 1 2.538-2.033 2.084 2.084 0 0 1 1.43 2.92m-.635 12.03a1.667 1.667 0 0 1-3.333 0"
                   />
                 </svg>
-                <p>Memory</p>
+                <p class="category_name"></p>
               </section>
-              <section class="result"><b>92 </b> / 100</section>
+              <section class="result">
+                <b class=".score_result">92 </b> / 100
+              </section>
             </li>
-            <li class="verbal">
+            <li class="cat3">
               <section class="li_left">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -319,11 +323,13 @@
                     d="M7.5 10h5M10 18.333A8.333 8.333 0 1 0 1.667 10c0 1.518.406 2.942 1.115 4.167l-.699 3.75 3.75-.699A8.295 8.295 0 0 0 10 18.333Z"
                   />
                 </svg>
-                <p>Verbal</p>
+                <p class="category_name"></p>
               </section>
-              <section class="result"><b>61 </b> / 100</section>
+              <section class="result">
+                <b class=".score_result">61 </b> / 100
+              </section>
             </li>
-            <li class="visual">
+            <li class="cat4">
               <section class="li_left">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -347,9 +353,11 @@
                     d="M17.5 10c-1.574 2.492-4.402 5-7.5 5s-5.926-2.508-7.5-5C4.416 7.632 6.66 5 10 5s5.584 2.632 7.5 5Z"
                   />
                 </svg>
-                <p>Visual</p>
+                <p class="category_name"></p>
               </section>
-              <section class="result"><b>72 </b> / 100</section>
+              <section class="result">
+                <b class=".score_result">72 </b> / 100
+              </section>
             </li>
           </ul>
           <button class="btn">Continue</button>
@@ -358,16 +366,66 @@
     </section>
   </body>
   <script>
-    //selector
-    // const o_P = document.getElementsByClassName(".overall_percentage");
-    // const c_c = document.getElementsByClassName(".cards_container");
-    // const lineBreak = function () {
-    //   if ((c_c.style.display = "flex")) {
-    //     console.log("mobile");
-    //   } else {
-    //     console.log("computer screen");
-    //   }
-    // };
-    // lineBreak();
+    //array of objects
+    const summary_info = [
+      {
+        category: "Reaction",
+        score: 80,
+        icon: "./assets/images/icon-reaction.svg",
+      },
+      {
+        category: "Memory",
+        score: 92,
+        icon: "./assets/images/icon-memory.svg",
+      },
+      {
+        category: "Verbal",
+        score: 61,
+        icon: "./assets/images/icon-verbal.svg",
+      },
+      {
+        category: "Visual",
+        score: 72,
+        icon: "./assets/images/icon-visual.svg",
+      },
+    ];
+    //selectors
+    const cat_text = document.querySelectorAll(".category_name"); // use .textContent or .innerHtml to insert the catego
+    const cat_score = document.getElementsByClassName(".score_result"); // use .textContent or .innerHtml to insert the catego
+    const avg_score = document.querySelector(".score");
+    // functions
+    // let { category } = summary_info[2]; //test
+    let { category } = summary_info[0];
+    let { score } = summary_info[0];
+    let { icon } = summary_info[0];
+    let scoreArray = [];
+    let sum = 0;
+    let average = 0;
+
+    // const scoreAvg = function (a, b, c) {};
+    const scoreAvg = function (...numbers) {
+      for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+      }
+      average = sum / numbers.length;
+      return average;
+    };
+
+    const updateInfo = function () {
+      for (let i = 0; i < summary_info.length; i++) {
+        //set
+        ({ category } = summary_info[i]);
+        ({ score } = summary_info[i]);
+
+        //making changes in the HTML
+        cat_text[i].textContent = category; //updates category
+        cat_score[i].textContent = score; //updates category
+
+        scoreArray.push(score); // creates a new array with all score of each category
+      }
+      scoreAvg(...scoreArray); // sums and averages the scores from the score array
+      avg_score.textContent = parseInt(average); // updates overall score on Your Results card
+    };
+    updateInfo();
   </script>
 </html>
