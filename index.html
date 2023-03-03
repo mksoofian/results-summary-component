@@ -22,10 +22,10 @@
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
       body {
-        --Lightred: hsl(0, 100%, 67%);
-        --OrangeyYellow: hsl(39, 100%, 56%);
-        --GreenTeal: hsl(166, 100%, 37%);
-        --CobaltBlue: hsl(234, 85%, 45%);
+        --Lightred: hsla(0, 100%, 67%, 0.85);
+        --OrangeyYellow: hsl(39, 100%, 56%, 0.85);
+        --GreenTeal: hsl(166, 100%, 37%, 0.85);
+        --CobaltBlue: hsl(234, 85%, 45%, 0.85);
         font-family: "Hanken Grotesk", sans-serif;
       }
       .cards_container {
@@ -61,6 +61,7 @@
         font-size: 1.5rem;
         font-weight: 500;
         margin-top: 0px;
+        color: hsla(0, 0%, 100%, 0.842);
       }
       .overall_score {
         background-image: linear-gradient(
@@ -86,6 +87,7 @@
 
       .subheader {
         font-size: 2rem;
+        font-weight: 700;
         color: hsl(0, 0%, 100%);
         margin-bottom: 16px;
       }
@@ -93,12 +95,8 @@
         font-size: 1.2rem;
         margin-top: 0px;
         max-width: 15rem;
-      }
-      .header,
-      .overall_percentage {
         color: hsla(222, 100%, 96%, 0.602);
       }
-
       .summary_card {
         background-color: hsl(0, 0%, 100%);
         border-radius: 0px 20px 20px 0px;
@@ -129,27 +127,28 @@
       }
       .li_left p {
         padding-left: 0.75rem;
+        font-weight: 700;
       }
       .cat1 {
-        background-color: hsla(0, 100%, 67%, 0.1);
+        background-color: hsla(0, 100%, 67%, 0.05);
       }
       .cat1 p {
         color: var(--Lightred);
       }
       .cat2 {
-        background-color: hsl(39, 100%, 56%, 0.1);
+        background-color: hsl(39, 100%, 56%, 0.05);
       }
       .cat2 p {
         color: var(--OrangeyYellow);
       }
       .cat3 {
-        background-color: hsl(166, 100%, 37%, 0.1);
+        background-color: hsl(166, 100%, 37%, 0.05);
       }
       .cat3 p {
         color: var(--GreenTeal);
       }
       .cat4 {
-        background-color: hsl(234, 85%, 45%, 0.1);
+        background-color: hsl(234, 85%, 45%, 0.05);
       }
       .cat4 p {
         color: var(--CobaltBlue);
@@ -167,7 +166,7 @@
         height: 4rem;
         width: 320px;
         background-color: hsl(224, 30%, 27%);
-        color: hsla(0, 0%, 100%, 0.856);
+        color: hsl(0, 0%, 100%);
         margin-top: 1rem;
         border-radius: 50px;
         font-size: 1.25rem;
